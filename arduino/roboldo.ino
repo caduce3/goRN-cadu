@@ -62,8 +62,8 @@ byte closed_eye_down[8] = {B00000000,
                            B00000000
                           };
 
-// boca feliz            //parte 1
-byte happy_mouth[24] = { B00000000,
+// boca triste            //parte 1
+byte sad_mouth[24] = { B00000000,
                          B00000000,
                          B00000000,
                          B00000000,
@@ -92,8 +92,8 @@ byte happy_mouth[24] = { B00000000,
                        };
 
 
-// boca triste           //parte 1
-byte sad_mouth[24] = {   B00000000,
+// boca feliz           //parte 1
+byte happy_mouth[24] = {   B00000000,
                          B00000000,
                          B00000000,
                          B00000000,
@@ -269,99 +269,65 @@ void setup()
 void loop()
 {
   if (!loopExecuted) {
-    delay(2000);
-//    Serial.println("play_audio");
-    for (int t=0; t < 18; t++) {
-      display_eyes(neutral_eye, neutral_eye);
-      if((t%2)==0){      
-          display_mouth(neutral_mouth);
-          delay(1000);
-      }else {
-          display_mouth(very_happy_mouth);
-          delay(1000);
-      }
-    }
 
-    apagar_leds(); // apaga todos os LEDs
-
-    delay(2000);
-    
     char olhos[TAM_OLHOS] = {':'};
     char bocas[TAM_BOCAS] = {')', '(', '|', 'D'};
-    
-    display_eyes(neutral_eye, neutral_eye);
-    display_mouth(sad_mouth); //BOCA FELIZ (LEMBRAR QUE TA TROCADO)
-    delay(2000);
-  
-//    for (int i = 0; i < TAM_OLHOS; i++) {
-//      for (int j = 0; j < TAM_BOCAS; j++) {
-//          
-//        char cmd = olhos[i];
-//        char cmd2 = bocas[j];
-        //char cmd3 = '2';
-     
 
-    //Serial.println("aprsEmocao");
     while (Serial.available() >= 0) {
       char receivedChar = Serial.read();
+
       if (receivedChar == '2') {
         display_eyes(neutral_eye, neutral_eye);
-        display_mouth(sad_mouth);
+        display_mouth(happy_mouth);
         delay(3000);
-      } else if (receivedChar == '0') {
+      } 
+      else if (receivedChar == '0') {
           display_eyes(neutral_eye, neutral_eye);
-          display_mouth(happy_mouth);
+          display_mouth(sad_mouth);
           delay(3000);
-      } else {
+      }
+      else if (receivedChar == '1'){
           display_eyes(neutral_eye, neutral_eye);
-          display_mouth(neutral_mouth);
+          display_mouth(sad_mouth);
+          delay(3000);
+      } 
+      else if (receivedChar == '3') { //FIM DE JOGO
+          display_eyes(closed_eye_up, closed_eye_up);
+          display_mouth(happy_mouth);
           delay(5000);
       }
-  }
-      
-        
+      else if (receivedChar == '4') { //FIM DE JOGO
+          display_eyes(closed_eye_up, closed_eye_up);
+          display_mouth(happy_mouth);
+          delay(5000);
+      }
+      else if (receivedChar == '5') { //FIM DE JOGO
+          display_eyes(closed_eye_up, closed_eye_up);
+          display_mouth(happy_mouth);
+          delay(5000);
+      }
+      else if(receivedChar == '6'){
+        for (int t=0; t < 18; t++) {
+          display_eyes(neutral_eye, neutral_eye);
+          if((t%2)==0){      
+              display_mouth(neutral_mouth);
+              delay(1000);
+          }else {
+              display_mouth(very_happy_mouth);
+              delay(1000);
+          }
+        }
 
-        
-//        if (cmd == ':') {
-//          display_eyes(neutral_eye, neutral_eye);
-//        }
-//        if (cmd2 == ')') {
-//          display_mouth(happy_mouth);
-//        }
-//        if (cmd2 == '(') {
-//          display_mouth(sad_mouth);
-//        }
-//        if (cmd2 == '|') {
-//          display_mouth(neutral_mouth);
-//        }
-        delay(1000); //tempo entre emoções
-//      }
-   
-//    display_eyes(neutral_eye, neutral_eye);
-//    display_mouth(sad_mouth); //BOCA FELIZ (LEMBRAR QUE TA TROCADO)
-//    Serial.println("fez");
-//    delay(500);
+        apagar_leds(); // apaga todos os LEDs
 
-//    Serial.println("play_audio_fim");
-//    for (int t=0; t < 9; t++) {
-//      display_eyes(neutral_eye, neutral_eye);
-//      if((t%2)==0){      
-//          display_mouth(neutral_mouth);
-//          delay(1000);
-//      }else {
-//          display_mouth(very_happy_mouth);
-//          delay(1000);
-//      }
-//    }
-
-//    delay(1000);
-//    display_eyes (neutral_eye, neutral_eye);
-//    delay(500);
-//    display_eyes (neutral_eye, closed_eye_up);
-//    delay(500);
-//    display_eyes (neutral_eye, neutral_eye);
-//    display_mouth(very_happy_mouth);
-//    delay(1000);
+        delay(1000);
+      }
+      else {
+          display_eyes(neutral_eye, neutral_eye);
+          display_mouth(neutral_mouth);
+          ;
+      }
+    }
 
     apagar_leds(); // apaga todos os LEDs
     loopExecuted = true;
