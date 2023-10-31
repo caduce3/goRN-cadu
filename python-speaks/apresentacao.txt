@@ -1,0 +1,6 @@
+Olá me chamo Roboldo, e estou sendo desenvolvido para interagir com os humanos.
+Porém, estou em dúvida sobre as minhas expressões faciais,
+você poderia me ajudar?
+
+Irei fazer algumas expressões e, por favor, indique que sentimento acredita que estou sentindo.
+Vamos começar?
