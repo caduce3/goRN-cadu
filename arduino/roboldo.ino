@@ -260,7 +260,7 @@ void setup()
   lc.clearDisplay(4);
 
   //iniciar comunicação serial
-  Serial.begin(19200);
+  Serial.begin(9600);
 }
 
 //***************
@@ -269,9 +269,9 @@ void setup()
 void loop()
 {
   if (!loopExecuted) {
-    delay(5000);
-    Serial.println("play_audio");
-    for (int t=0; t < 24; t++) {
+    delay(2000);
+//    Serial.println("play_audio");
+    for (int t=0; t < 18; t++) {
       display_eyes(neutral_eye, neutral_eye);
       if((t%2)==0){      
           display_mouth(neutral_mouth);
@@ -286,62 +286,82 @@ void loop()
 
     delay(2000);
     
-    char olhos[TAM_OLHOS] = {'8', ':'};
-    char bocas[TAM_BOCAS] = {')', '(', '|', 'o', 'D'};
+    char olhos[TAM_OLHOS] = {':'};
+    char bocas[TAM_BOCAS] = {')', '(', '|', 'D'};
+    
+    display_eyes(neutral_eye, neutral_eye);
+    display_mouth(sad_mouth); //BOCA FELIZ (LEMBRAR QUE TA TROCADO)
+    delay(2000);
   
-    for (int i = 0; i < TAM_OLHOS; i++) {
-      for (int j = 0; j < TAM_BOCAS; j++) {
-          
-        char cmd = olhos[i];
-        char cmd2 = bocas[j];
+//    for (int i = 0; i < TAM_OLHOS; i++) {
+//      for (int j = 0; j < TAM_BOCAS; j++) {
+//          
+//        char cmd = olhos[i];
+//        char cmd2 = bocas[j];
+        //char cmd3 = '2';
+     
 
-        Serial.println("aprsEmocao");
-  
-        if (cmd == ':') {
+    //Serial.println("aprsEmocao");
+    while (Serial.available() >= 0) {
+      char receivedChar = Serial.read();
+      if (receivedChar == '2') {
+        display_eyes(neutral_eye, neutral_eye);
+        display_mouth(sad_mouth);
+        delay(3000);
+      } else if (receivedChar == '0') {
           display_eyes(neutral_eye, neutral_eye);
-        }
-        if (cmd == '8') {
-          display_eyes(spooky_eye, spooky_eye);
-        }
-        if (cmd2 == ')') {
           display_mouth(happy_mouth);
-        }
-        if (cmd2 == '(') {
-          display_mouth(sad_mouth);
-        }
-        if (cmd2 == 'D') {
-          display_mouth(very_happy_mouth);
-        }
-        if (cmd2 == 'o') {
-          display_mouth(opened_mouth);
-        }
-        if (cmd2 == '|') {
+          delay(3000);
+      } else {
+          display_eyes(neutral_eye, neutral_eye);
           display_mouth(neutral_mouth);
-        }
-        delay(10000); //tempo entre emoções
+          delay(5000);
       }
-    }
+  }
+      
+        
 
-    Serial.println("play_audio_fim");
-    for (int t=0; t < 9; t++) {
-      display_eyes(neutral_eye, neutral_eye);
-      if((t%2)==0){      
-          display_mouth(neutral_mouth);
-          delay(1000);
-      }else {
-          display_mouth(very_happy_mouth);
-          delay(1000);
-      }
-    }
+        
+//        if (cmd == ':') {
+//          display_eyes(neutral_eye, neutral_eye);
+//        }
+//        if (cmd2 == ')') {
+//          display_mouth(happy_mouth);
+//        }
+//        if (cmd2 == '(') {
+//          display_mouth(sad_mouth);
+//        }
+//        if (cmd2 == '|') {
+//          display_mouth(neutral_mouth);
+//        }
+        delay(1000); //tempo entre emoções
+//      }
+   
+//    display_eyes(neutral_eye, neutral_eye);
+//    display_mouth(sad_mouth); //BOCA FELIZ (LEMBRAR QUE TA TROCADO)
+//    Serial.println("fez");
+//    delay(500);
 
-    delay(1000);
-    display_eyes (neutral_eye, neutral_eye);
-    delay(500);
-    display_eyes (neutral_eye, closed_eye_up);
-    delay(500);
-    display_eyes (neutral_eye, neutral_eye);
-    display_mouth(very_happy_mouth);
-    delay(1000);
+//    Serial.println("play_audio_fim");
+//    for (int t=0; t < 9; t++) {
+//      display_eyes(neutral_eye, neutral_eye);
+//      if((t%2)==0){      
+//          display_mouth(neutral_mouth);
+//          delay(1000);
+//      }else {
+//          display_mouth(very_happy_mouth);
+//          delay(1000);
+//      }
+//    }
+
+//    delay(1000);
+//    display_eyes (neutral_eye, neutral_eye);
+//    delay(500);
+//    display_eyes (neutral_eye, closed_eye_up);
+//    delay(500);
+//    display_eyes (neutral_eye, neutral_eye);
+//    display_mouth(very_happy_mouth);
+//    delay(1000);
 
     apagar_leds(); // apaga todos os LEDs
     loopExecuted = true;
