@@ -279,17 +279,17 @@ void loop()
       if (receivedChar == '2') {
         display_eyes(neutral_eye, neutral_eye);
         display_mouth(happy_mouth);
-        delay(3000);
+        delay(5000);
       } 
       else if (receivedChar == '0') {
           display_eyes(neutral_eye, neutral_eye);
           display_mouth(sad_mouth);
-          delay(3000);
+          delay(5000);
       }
       else if (receivedChar == '1'){
           display_eyes(neutral_eye, neutral_eye);
           display_mouth(sad_mouth);
-          delay(3000);
+          delay(5000);
       } 
       else if (receivedChar == '3') { //FIM DE JOGO
           display_eyes(closed_eye_up, closed_eye_up);
