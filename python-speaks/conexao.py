@@ -14,31 +14,42 @@ pygame.init()
 ser = serial.Serial('COM5', 9600)
 
 # Caminho absoluto para o diretório dos arquivos de áudio C1
-audio_directory = r'C:\Users\caduc\Documents\BCC-UERN-TCC\python-speaks\aud-c1'
-
-# Caminho absoluto para o diretório dos arquivos de áudio C2
-# audio_directory = r'C:\Users\caduc\Documents\BCC-UERN-TCC\python-speaks\aud-c2'
+# audio_directory = r'C:\Users\caduc\Documents\Estudos\goRN-cadu\python-speaks\aud-c1'
 
 #AUDIOS CONDIÇÃO 1 -  Roboldo erra e coloca a culpa no jogador 
-audio_options_c1 = [
-    'c1-1.mp3',
-    'c1-2.mp3',
-    'c1-3.mp3',
-    'c1-4.mp3',
-    'c1-5.mp3',
-]
-
-#AUDIOS CONDIÇÃO 2 - Roboldo erra e coloca a culpa nele mesmo ou no programador
-# audio_options_c2 = [
-#     'c2-1.mp3',
-    # 'c2-2.mp3',
-    # 'c2-3.mp3',
-    # 'c2-4.mp3',
-    # 'c2-5.mp3',
+# audio_options_c1 = [
+#     'c1-1.mp3',
+#     'c1-2.mp3',
+#     'c1-3.mp3',
+#     'c1-4.mp3',
+#     'c1-5.mp3',
+#     'c1-6.mp3',
+#     'c1-7.mp3',
+#     'c1-8.mp3',
+#     'c1-9.mp3',
+#     'c1-10.mp3',
 # ]
 
 
-audio_directory_acerto = r'C:\Users\caduc\Documents\BCC-UERN-TCC\python-speaks\acerto'
+# Caminho absoluto para o diretório dos arquivos de áudio C2
+audio_directory = r'C:\Users\caduc\Documents\Estudos\goRN-cadu\python-speaks\aud-c2'
+
+#AUDIOS CONDIÇÃO 2 - Roboldo erra e coloca a culpa nele mesmo ou no programador
+audio_options_c2 = [
+    'c2-1.mp3',
+    'c2-2.mp3',
+    'c2-3.mp3',
+    'c2-4.mp3',
+    'c2-5.mp3',
+    'c2-6.mp3',
+    'c2-7.mp3',
+    'c2-8.mp3',
+    'c2-9.mp3',
+    'c2-10.mp3',
+]
+
+
+audio_directory_acerto = r'C:\Users\caduc\Documents\Estudos\goRN-cadu\python-speaks\acerto'
 #AUDIOS ACERTO DO USUÁRIO
 audio_options_acerto = [
     'acerto1.mp3',
@@ -49,13 +60,17 @@ audio_options_acerto = [
 ]
 
 
-audio_directory_acerto_roboldo = r'C:\Users\caduc\Documents\BCC-UERN-TCC\python-speaks\acerto-roboldo'
-#AUDIOS ACERTO DO ROBOLDO
+audio_directory_acerto_roboldo = r'C:\Users\caduc\Documents\Estudos\goRN-cadu\python-speaks\acerto-roboldo'
+#AUDIOS ACERTO DO ROBOLDOC:
 audio_options_acerto_roboldo = [
     'acerto1.mp3',
     'acerto2.mp3',
-    'acerto3.mp3'
+    'acerto3.mp3',
+    'acerto4.mp3',
+    'acerto5.mp3'
 ]
+
+
 
 HOST = 'localhost'
 PORT = 3005
@@ -64,12 +79,12 @@ def processar_mensagem(message):
     if message == "1":
         # print("O usuário acertou")
         ser.write('1'.encode())
-        audio_file = os.path.join(audio_directory_acerto, random.choice(audio_options_acerto))
+        audio_file = os.path.join(audio_directory_acerto, random.choice(audio_options_acerto))       
     
     elif message == "0":
         # print("O roboldo errou")
         ser.write('0'.encode()) 
-        audio_file = os.path.join(audio_directory, random.choice(audio_options_c1))
+        audio_file = os.path.join(audio_directory, random.choice(audio_options_c2))
     
     elif message == "2":
         # print("O roboldo acertou")
