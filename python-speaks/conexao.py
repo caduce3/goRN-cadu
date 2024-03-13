@@ -3,7 +3,6 @@ import serial
 import pygame
 import os
 import random
-import time
 import serial
 from tkinter import *
 
@@ -14,21 +13,21 @@ pygame.init()
 ser = serial.Serial('COM5', 9600)
 
 # Caminho absoluto para o diretório dos arquivos de áudio C1
-audio_directory = r'C:\Users\caduc\Documents\Estudos\goRN-cadu\python-speaks\aud-c1'
+# audio_directory = r'C:\Users\caduc\Documents\Estudos\goRN-cadu\python-speaks\aud-c1'
 
 #AUDIOS CONDIÇÃO 1 -  Roboldo erra e coloca a culpa no jogador 
-audio_options_c1 = [
-    'c1-1.mp3',
-    'c1-2.mp3',
-    'c1-3.mp3',
-    'c1-4.mp3',
-    'c1-5.mp3',
-    'c1-6.mp3',
-    'c1-7.mp3',
-    'c1-8.mp3',
-    'c1-9.mp3',
-    'c1-10.mp3',
-]
+# audio_options_c1 = [
+#     'c1-1.mp3',
+#     'c1-2.mp3',
+#     'c1-3.mp3',
+#     'c1-4.mp3',
+#     'c1-5.mp3',
+#     'c1-6.mp3',
+#     'c1-7.mp3',
+#     'c1-8.mp3',
+#     'c1-9.mp3',
+#     'c1-10.mp3',
+# ]
 
 
 # Caminho absoluto para o diretório dos arquivos de áudio C2
